@@ -1,0 +1,16 @@
+.idea/jarRepositories.xml
+.idea/vcs.xml
+androidApp/build/
+shared/build/
+.idea/gradle.xml
+.idea/compiler.xml
+.idea/misc.xml
+*.iml
+/local.properties
+.DS_Store
+/build
+*/build
+/captures
+.externalNativeBuild
+.cxx
+.gradle/
