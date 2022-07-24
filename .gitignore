@@ -1,0 +1,9 @@
+.gradle/
+local.properties
+.idea/jarRepositories.xml
+.idea/vcs.xml
+androidApp/build/
+shared/build/
+.idea/gradle.xml
+.idea/compiler.xml
+.idea/misc.xml
