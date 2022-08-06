@@ -8,8 +8,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.bobmitchigan.com.SocketCLient
 import com.bobmitchigan.com.android.ui.theme.KtMultiNostrTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,6 +25,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Greeting("Multiplatform")
+                    LaunchedEffect(key1 = "socket") {
+                        SocketCLient().run()
+                    }
                 }
             }
         }
