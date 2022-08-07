@@ -24,12 +24,15 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.0.3"
+        val koin = "3.2.0"
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-websockets:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:1.2.11")
+                // koin
+                implementation("io.insert-koin:koin-core:$koin")
             }
         }
         val commonTest by getting {
