@@ -1,3 +1,5 @@
+import Dependencies.testImplementations
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -61,4 +63,5 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_ui_version"]}")
     debugImplementation("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_ui_version"]}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${rootProject.extra["compose_ui_version"]}")
+    testImplementations(Dependencies.testLibraries)
 }

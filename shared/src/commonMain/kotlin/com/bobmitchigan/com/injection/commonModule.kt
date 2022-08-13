@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.injection
 
+import com.bobmitchigan.com.SocketClient
 import com.bobmitchigan.com.dataaccess.SocketRepository
 import com.bobmitchigan.com.domain.Repository
 import io.ktor.client.*
@@ -15,6 +16,8 @@ val commonModule = module {
             install(WebSockets)
         }
     }
+
+    factory { SocketClient(get()) }
 
     factory<Repository> { SocketRepository(get()) }
 }
