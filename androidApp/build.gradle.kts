@@ -54,7 +54,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:${rootProject.extra["compose_ui_version"]}")
     implementation("androidx.compose.material:material:1.1.1")
 
-    implementation("io.insert-koin:koin-android:3.2.0")
+    implementation(Dependencies.koinCore)
+    implementation (Dependencies.koinCompose)
+    implementation (Dependencies.koinAndroid)
 
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_ui_version"]}")
     debugImplementation("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_ui_version"]}")

@@ -40,8 +40,8 @@ object Dependencies {
 
     // koin
     const val koinCore = "io.insert-koin:koin-core:${Versions.koin}"
-    private const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
-    private const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+    const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
+    const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 
     // coroutines
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"

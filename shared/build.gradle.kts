@@ -32,7 +32,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:1.2.11")
                 // koin
-                implementation("io.insert-koin:koin-core:$koin")
+                implementation(Dependencies.koinCore)
             }
         }
         val commonTest by getting {
