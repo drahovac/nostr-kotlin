@@ -14,3 +14,4 @@ shared/build/
 .externalNativeBuild
 .cxx
 .gradle/
+.idea/deploymentTargetDropDown.xml
