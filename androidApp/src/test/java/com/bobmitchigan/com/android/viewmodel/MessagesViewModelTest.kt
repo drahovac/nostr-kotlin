@@ -1,8 +1,10 @@
 package com.bobmitchigan.com.android.viewmodel
 
+import co.touchlab.kermit.CommonWriter
+import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.dataaccess.SocketRepository
 import com.bobmitchigan.com.domain.Message
-import io.mockk.every
+import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +21,8 @@ internal class MessagesViewModelTest {
 
     @Before
     fun setUp() {
-        every { repository.getMessages() } returns messagesFlow
+        Logger.setLogWriters(CommonWriter())
+        coEvery { repository.getMessages() } returns messagesFlow
         Dispatchers.setMain(Dispatchers.Unconfined)
         messagesViewModel = MessagesViewModel(repository)
     }

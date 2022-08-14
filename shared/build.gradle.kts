@@ -31,6 +31,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-websockets:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:1.2.11")
+                api("co.touchlab:kermit:1.1.3")
                 // koin
                 implementation(Dependencies.koinCore)
             }
