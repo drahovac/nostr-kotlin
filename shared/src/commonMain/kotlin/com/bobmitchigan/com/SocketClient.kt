@@ -17,8 +17,7 @@ class SocketClient(private val client: HttpClient) {
             runCatching {
                 client.wss(
                     method = HttpMethod.Get,
-                    host = "demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self",
-                    port = 8080,
+                    host = "nostr-pub.wellorder.net",
                 ) {
                     emitMessages(this@flow, this)
                 }
@@ -34,6 +33,7 @@ class SocketClient(private val client: HttpClient) {
     ) {
         runCatching {
             while (this.isActive) {
+                outgoing.send(Frame.Text("[\"REQ\", \"\", {}]"))
                 (incoming.receive() as? Frame.Text)?.let {
                     flowCollector.emit(Message(it.readText()))
                 }
