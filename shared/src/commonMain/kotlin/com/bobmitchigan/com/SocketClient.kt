@@ -32,12 +32,11 @@ class SocketClient(private val client: HttpClient) {
         defaultClientWebSocketSession: DefaultClientWebSocketSession
     ) {
         runCatching {
+            outgoing.send(Frame.Text("[\"REQ\", \"\", {}]"))
             while (this.isActive) {
-                outgoing.send(Frame.Text("[\"REQ\", \"\", {}]"))
                 (incoming.receive() as? Frame.Text)?.let {
                     flowCollector.emit(Message(it.readText()))
                 }
-                outgoing.send(Frame.Text("I am"))
             }
         }.onFailure {
             defaultClientWebSocketSession.close()
