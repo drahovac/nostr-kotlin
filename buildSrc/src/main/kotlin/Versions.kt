@@ -2,7 +2,7 @@ object Versions {
     //app level
     const val buildTools = "7.2.1"
     const val gradle = "4.0.1"
-    const val kotlin = "1.7.0"
+    const val kotlin = "1.7.10"
     const val benManes = "0.42.0"
     const val detekt = "1.20.0"
 

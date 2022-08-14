@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization") version Versions.kotlin
     id("com.android.library")
 }
 
@@ -34,6 +35,7 @@ kotlin {
                 api("co.touchlab:kermit:1.1.3")
                 // koin
                 implementation(Dependencies.koinCore)
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0-RC")
             }
         }
         val commonTest by getting {

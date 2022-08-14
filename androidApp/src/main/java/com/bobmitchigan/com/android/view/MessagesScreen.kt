@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bobmitchigan.com.android.R
 import com.bobmitchigan.com.android.viewmodel.MessagesViewModel
-import com.bobmitchigan.com.domain.Message
+import com.bobmitchigan.com.domain.Event
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -23,7 +23,7 @@ fun MessagesScreen(viewModel: MessagesViewModel = getViewModel()) {
 }
 
 @Composable
-private fun MessagesContent(messages: List<Message>) {
+private fun MessagesContent(messages: List<Event>) {
     LazyColumn {
         item {
             Text(
@@ -35,7 +35,7 @@ private fun MessagesContent(messages: List<Message>) {
 
         items(messages) { message ->
             Text(
-                text = message.text,
+                text = message.content,
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(16.dp)
             )

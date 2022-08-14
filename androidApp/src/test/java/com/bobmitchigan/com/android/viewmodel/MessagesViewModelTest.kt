@@ -3,7 +3,7 @@ package com.bobmitchigan.com.android.viewmodel
 import co.touchlab.kermit.CommonWriter
 import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.dataaccess.SocketRepository
-import com.bobmitchigan.com.domain.Message
+import com.bobmitchigan.com.domain.Event
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ import org.junit.Test
 internal class MessagesViewModelTest {
 
     private val repository: SocketRepository = mockk()
-    private val messagesFlow = MutableStateFlow<Message>(MESSAGE_1)
+    private val messagesFlow = MutableStateFlow<Event>(Event_1)
     private lateinit var messagesViewModel: MessagesViewModel
 
     @Before
@@ -29,7 +29,7 @@ internal class MessagesViewModelTest {
 
     @Test
     fun `return first messages on init`() {
-        assertEquals(listOf(MESSAGE_1), messagesViewModel.messages.value)
+        assertEquals(listOf(Event_1), messagesViewModel.messages.value)
     }
 
     @Test
@@ -37,13 +37,13 @@ internal class MessagesViewModelTest {
         messagesFlow.value = MESSAGE_2
 
         assertEquals(
-            listOf(MESSAGE_1, MESSAGE_2),
+            listOf(Event_1, MESSAGE_2),
             messagesViewModel.messages.value
         )
     }
 
     private companion object {
-        val MESSAGE_1 = Message("Message 1")
-        val MESSAGE_2 = Message("Message 2")
+        val Event_1 = Event("Message 1")
+        val MESSAGE_2 = Event("Message 2")
     }
 }
