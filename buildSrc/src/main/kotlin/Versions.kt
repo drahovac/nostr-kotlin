@@ -23,6 +23,7 @@ object Versions {
     const val coroutines = "1.6.4"
     const val retrofit = "2.9.0"
     const val joda = "2.10.14"
+    const val date = "0.4.0"
 
     //test
     const val junit = "4.13.2"

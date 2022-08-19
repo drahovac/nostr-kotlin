@@ -1,8 +1,11 @@
 package com.bobmitchigan.com.android.view
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -34,11 +37,22 @@ private fun MessagesContent(messages: List<Event>) {
         }
 
         items(messages) { message ->
-            Text(
-                text = message.content,
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(16.dp)
-            )
+            Card(modifier = Modifier.padding(16.dp)) {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)) {
+                    Text(
+                        text = message.content,
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    Text(
+                        text = message.created.toString(),
+                        style = MaterialTheme.typography.body1,
+                    )
+                }
+            }
         }
     }
 }

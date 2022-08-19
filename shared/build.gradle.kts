@@ -33,8 +33,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:1.2.11")
                 api("co.touchlab:kermit:1.1.3")
-                // koin
                 implementation(Dependencies.koinCore)
+                api(Dependencies.date)
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0-RC")
             }
         }

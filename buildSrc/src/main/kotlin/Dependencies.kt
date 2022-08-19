@@ -46,11 +46,8 @@ object Dependencies {
     // coroutines
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
-    // retrofin
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-
-    // joda time
-    const val joda = "net.danlew:android.joda:${Versions.joda}"
+    // date
+    const val date = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.date}"
 
     // test libs
     const val junit = "junit:junit:${Versions.junit}"

@@ -2,6 +2,9 @@ package com.bobmitchigan.com.dataaccess
 
 import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.domain.Event
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 
@@ -16,6 +19,10 @@ object EventParser {
             return null
         }
 
-        return Event(dto.content.orEmpty())
+        return Event(
+            dto.content.orEmpty(),
+            Instant.fromEpochSeconds(dto.created_at)
+                .toLocalDateTime(TimeZone.currentSystemDefault())
+        )
     }
 }

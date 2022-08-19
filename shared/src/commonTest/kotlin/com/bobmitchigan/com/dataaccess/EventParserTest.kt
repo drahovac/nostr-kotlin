@@ -32,7 +32,11 @@ class EventParserTest {
         assertNotNull(result)
         assertEquals(
             "6bb60f7dd4171d915b615030bc3cd2af785188834f38f391aa6b28e6a5359ecb,1",
-            result.content
+            result.content,
+        )
+        assertEquals(
+            "2022-08-19T21:38:06",
+            result.created.toString()
         )
     }
 
@@ -43,7 +47,7 @@ class EventParserTest {
            {
               "id":"4d624216563b2e96273cf39f79d89bc05694018391ffc9ae2d0c9a5be39eee6e",
               "pubkey":"1a959462676a7eb45f479d4f050d9922b0b2fc851a669f3eb96f9949b53741c0",
-              "created_at":7,
+              "created_at":1660937886,
               "kind":1,
               "tags":[
                  
