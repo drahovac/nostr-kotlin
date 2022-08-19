@@ -6,4 +6,5 @@ import kotlinx.serialization.Serializable
 data class EventFilter(
     val authors: List<String>,
     val kinds: List<Int>,
+    val limit: Int,
 )

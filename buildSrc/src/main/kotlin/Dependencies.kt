@@ -34,10 +34,6 @@ object Dependencies {
     private const val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     private const val composeManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
 
-    // coroutines
-    const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-
     // koin
     const val koinCore = "io.insert-koin:koin-core:${Versions.koin}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
@@ -48,6 +44,12 @@ object Dependencies {
 
     // date
     const val date = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.date}"
+
+    // crypto
+    const val hash = "com.soywiz.korlibs.krypto:krypto:${Versions.hash}"
+
+    // serial
+    const val serial = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.seri}"
 
     // test libs
     const val junit = "junit:junit:${Versions.junit}"

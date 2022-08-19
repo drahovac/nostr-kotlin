@@ -24,6 +24,8 @@ object Versions {
     const val retrofit = "2.9.0"
     const val joda = "2.10.14"
     const val date = "0.4.0"
+    const val hash = "2.2.0"
+    const val seri = "1.4.0-RC"
 
     //test
     const val junit = "4.13.2"

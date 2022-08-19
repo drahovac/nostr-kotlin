@@ -34,8 +34,9 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:1.2.11")
                 api("co.touchlab:kermit:1.1.3")
                 implementation(Dependencies.koinCore)
+                implementation(Dependencies.hash)
+                implementation(Dependencies.serial)
                 api(Dependencies.date)
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0-RC")
             }
         }
         val commonTest by getting {

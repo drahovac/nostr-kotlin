@@ -16,5 +16,6 @@ sealed interface EventArrayMember {
         val kind: Int,
         val content: String?,
         val sig: String,
+        val tags: List<List<String>>,
     ) : EventArrayMember
 }

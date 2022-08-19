@@ -39,7 +39,8 @@ class SocketClient(private val client: HttpClient) {
         runCatching {
             val filterText = EventFilter(
                 authors = listOf("2ef93f01cd2493e04235a6b87b10d3c4a74e2a7eb7c3caf168268f6af73314b5"),
-                kinds = listOf(1)
+                kinds = listOf(1),
+                limit = 10,
             ).let {
                 Json.encodeToString(value = it)
             }

@@ -1,6 +1,7 @@
 package com.bobmitchigan.com.dataaccess
 
 import co.touchlab.kermit.Logger
+import com.bobmitchigan.com.dataaccess.EventValidator.hasValidId
 import com.bobmitchigan.com.domain.Event
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -18,6 +19,7 @@ object EventParser {
             Logger.e("Event parsing error", ex)
             return null
         }
+        check(hasValidId(dto)) { "Event has invalid id" }
 
         return Event(
             dto.content.orEmpty(),
