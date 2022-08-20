@@ -1,8 +1,6 @@
-package com.bobmitchigan.com
+package com.bobmitchigan.com.dataaccess
 
 import co.touchlab.kermit.Logger
-import com.bobmitchigan.com.dataaccess.EventFilter
-import com.bobmitchigan.com.dataaccess.EventParser
 import com.bobmitchigan.com.domain.Event
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*

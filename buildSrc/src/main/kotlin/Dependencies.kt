@@ -54,6 +54,11 @@ object Dependencies {
     // serial
     const val serial = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.seri}"
 
+    // db
+    const val dbMain = "com.squareup.sqldelight:runtime-metadata:1.1.3"
+    const val dbAnd = "com.squareup.sqldelight:android-driver:${Versions.database}"
+    const val dbIos = "com.squareup.sqldelight:native-driver:${Versions.database}"
+
     // test libs
     const val junit = "junit:junit:${Versions.junit}"
     private const val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"

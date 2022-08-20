@@ -15,6 +15,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0")
         classpath("com.android.tools.build:gradle:7.2.2")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}")
+        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.database}")
     }
 }
 

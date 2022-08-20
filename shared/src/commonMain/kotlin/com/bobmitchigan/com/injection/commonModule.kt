@@ -1,7 +1,8 @@
 package com.bobmitchigan.com.injection
 
-import com.bobmitchigan.com.SocketClient
+import com.bobmitchigan.com.dataaccess.SocketClient
 import com.bobmitchigan.com.dataaccess.SocketRepository
+import com.bobmitchigan.com.dataaccess.createDatabase
 import com.bobmitchigan.com.domain.Repository
 import io.ktor.client.*
 import io.ktor.client.plugins.logging.*
@@ -17,7 +18,9 @@ val commonModule = module {
         }
     }
 
+    single { createDatabase(get()) }
+
     factory { SocketClient(get()) }
 
-    factory<Repository> { SocketRepository(get()) }
+    factory<Repository> { SocketRepository(get(), get()) }
 }
