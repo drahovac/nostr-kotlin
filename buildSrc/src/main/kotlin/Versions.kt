@@ -2,7 +2,7 @@ object Versions {
     //app level
     const val buildTools = "7.2.1"
     const val gradle = "4.0.1"
-    const val kotlin = "1.7.0"
+    const val kotlin = "1.7.10"
     const val benManes = "0.42.0"
     const val detekt = "1.20.0"
 
@@ -23,6 +23,10 @@ object Versions {
     const val coroutines = "1.6.4"
     const val retrofit = "2.9.0"
     const val joda = "2.10.14"
+    const val date = "0.4.0"
+    const val hash = "2.2.0"
+    const val seri = "1.4.0-RC"
+    const val secp = "0.6.4"
 
     //test
     const val junit = "4.13.2"

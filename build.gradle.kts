@@ -13,7 +13,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0")
-        classpath("com.android.tools.build:gradle:7.3.0-beta01")
+        classpath("com.android.tools.build:gradle:7.2.2")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}")
     }
 }

@@ -3,9 +3,7 @@ package com.bobmitchigan.com.domain
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    suspend fun setMessage(message: Message)
+    suspend fun setMessage(message: Event)
 
-    fun getMessages(): Flow<Message>
-
-    fun close()
+    suspend fun getMessages(): Flow<Event>
 }

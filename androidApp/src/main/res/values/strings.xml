@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NOSTR</string>
+
+    <string name="messages_title">Messages</string>
 </resources>

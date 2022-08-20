@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization") version Versions.kotlin
     id("com.android.library")
 }
 
@@ -24,15 +25,18 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.0.3"
-        val koin = "3.2.0"
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-websockets:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:1.2.11")
-                // koin
-                implementation("io.insert-koin:koin-core:$koin")
+                api("co.touchlab:kermit:1.1.3")
+                implementation(Dependencies.koinCore)
+                implementation(Dependencies.hash)
+                implementation(Dependencies.serial)
+                api(Dependencies.date)
+                implementation(Dependencies.secpKmp)
             }
         }
         val commonTest by getting {
@@ -43,9 +47,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(Dependencies.secpAnd)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(Dependencies.secpJvm)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

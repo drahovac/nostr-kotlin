@@ -34,23 +34,25 @@ object Dependencies {
     private const val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     private const val composeManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
 
-    // coroutines
-    const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-
     // koin
     const val koinCore = "io.insert-koin:koin-core:${Versions.koin}"
-    private const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
-    private const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+    const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
+    const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 
     // coroutines
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
-    // retrofin
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    // date
+    const val date = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.date}"
 
-    // joda time
-    const val joda = "net.danlew:android.joda:${Versions.joda}"
+    // crypto
+    const val hash = "com.soywiz.korlibs.krypto:krypto:${Versions.hash}"
+    const val secpKmp = "fr.acinq.secp256k1:secp256k1-kmp:${Versions.secp}"
+    const val secpAnd = "fr.acinq.secp256k1:secp256k1-kmp-jni-android:${Versions.secp}"
+    const val secpJvm = "fr.acinq.secp256k1:secp256k1-kmp-jni-jvm:${Versions.secp}"
+
+    // serial
+    const val serial = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.seri}"
 
     // test libs
     const val junit = "junit:junit:${Versions.junit}"
