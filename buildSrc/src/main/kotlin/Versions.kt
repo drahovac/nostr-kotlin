@@ -26,6 +26,7 @@ object Versions {
     const val date = "0.4.0"
     const val hash = "2.2.0"
     const val seri = "1.4.0-RC"
+    const val secp = "0.6.4"
 
     //test
     const val junit = "4.13.2"

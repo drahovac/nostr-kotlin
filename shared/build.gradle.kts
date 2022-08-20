@@ -25,7 +25,6 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.0.3"
-        val koin = "3.2.0"
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -37,7 +36,7 @@ kotlin {
                 implementation(Dependencies.hash)
                 implementation(Dependencies.serial)
                 api(Dependencies.date)
-                implementation("fr.acinq.secp256k1:secp256k1-kmp:0.6.4")
+                implementation(Dependencies.secpKmp)
             }
         }
         val commonTest by getting {
@@ -48,12 +47,12 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
-                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:0.6.4")
+                implementation(Dependencies.secpAnd)
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-jvm:0.6.4")
+                implementation(Dependencies.secpJvm)
             }
         }
         val iosX64Main by getting

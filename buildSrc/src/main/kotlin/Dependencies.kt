@@ -47,6 +47,9 @@ object Dependencies {
 
     // crypto
     const val hash = "com.soywiz.korlibs.krypto:krypto:${Versions.hash}"
+    const val secpKmp = "fr.acinq.secp256k1:secp256k1-kmp:${Versions.secp}"
+    const val secpAnd = "fr.acinq.secp256k1:secp256k1-kmp-jni-android:${Versions.secp}"
+    const val secpJvm = "fr.acinq.secp256k1:secp256k1-kmp-jni-jvm:${Versions.secp}"
 
     // serial
     const val serial = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.seri}"
