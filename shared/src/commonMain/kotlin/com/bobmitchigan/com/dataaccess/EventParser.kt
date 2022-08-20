@@ -23,7 +23,9 @@ object EventParser {
 
         return Event(
             dto.content.orEmpty(),
-            DateTime.fromUnix(dto.created * 1000)
+            DateTime.fromUnix(dto.created * MILLIS_IN_SECONDS)
         )
     }
 }
+
+private const val MILLIS_IN_SECONDS = 1000L
