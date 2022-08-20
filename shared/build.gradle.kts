@@ -37,6 +37,7 @@ kotlin {
                 implementation(Dependencies.hash)
                 implementation(Dependencies.serial)
                 api(Dependencies.date)
+                implementation("fr.acinq.secp256k1:secp256k1-kmp:0.6.4")
             }
         }
         val commonTest by getting {
@@ -47,9 +48,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:0.6.4")
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-jvm:0.6.4")
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

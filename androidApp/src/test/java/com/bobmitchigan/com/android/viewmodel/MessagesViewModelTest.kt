@@ -9,6 +9,9 @@ import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.setMain
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -43,7 +46,13 @@ internal class MessagesViewModelTest {
     }
 
     private companion object {
-        val Event_1 = Event("Message 1")
-        val MESSAGE_2 = Event("Message 2")
+        val Event_1 = Event(
+            "Message 1",
+            Instant.fromEpochSeconds(1000).toLocalDateTime(TimeZone.currentSystemDefault())
+        )
+        val MESSAGE_2 = Event(
+            "Message 2",
+            Instant.fromEpochSeconds(1000).toLocalDateTime(TimeZone.currentSystemDefault())
+        )
     }
 }

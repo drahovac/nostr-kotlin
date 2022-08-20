@@ -9,13 +9,9 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.bobmitchigan.com.android.ui.theme.KtMultiNostrTheme
 import com.bobmitchigan.com.android.view.MessagesScreen
-import com.bobmitchigan.com.domain.Repository
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 class MainActivity : ComponentActivity(), KoinComponent {
-
-    private val repository: Repository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

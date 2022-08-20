@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.dataaccess
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable(with = EventArrayMemberDeserializer::class)
@@ -12,7 +13,8 @@ sealed interface EventArrayMember {
     data class EventDto(
         val id: String,
         val pubkey: String,
-        val created_at: Long,
+        @SerialName("created_at")
+        val created: Long,
         val kind: Int,
         val content: String?,
         val sig: String,
