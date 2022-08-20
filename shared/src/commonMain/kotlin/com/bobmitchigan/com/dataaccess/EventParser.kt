@@ -4,9 +4,7 @@ import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.dataaccess.EventValidator.hasValidId
 import com.bobmitchigan.com.dataaccess.EventValidator.hasValidSignature
 import com.bobmitchigan.com.domain.Event
-import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import com.soywiz.klock.DateTime
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 
@@ -25,8 +23,7 @@ object EventParser {
 
         return Event(
             dto.content.orEmpty(),
-            Instant.fromEpochSeconds(dto.created)
-                .toLocalDateTime(TimeZone.currentSystemDefault())
+            DateTime.fromUnix(dto.created * 1000)
         )
     }
 }

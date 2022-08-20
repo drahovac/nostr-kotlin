@@ -35,8 +35,8 @@ class EventParserTest {
             result.content,
         )
         assertEquals(
-            "2022-08-18T14:47:05",
-            result.created.toString()
+            "Thu, 18 Aug 2022 12:47:05 UTC",
+            result.created.toStringDefault()
         )
     }
 

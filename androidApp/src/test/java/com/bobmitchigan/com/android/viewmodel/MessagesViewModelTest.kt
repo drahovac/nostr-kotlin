@@ -4,14 +4,12 @@ import co.touchlab.kermit.CommonWriter
 import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.dataaccess.SocketRepository
 import com.bobmitchigan.com.domain.Event
+import com.soywiz.klock.DateTime
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.setMain
-import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -48,11 +46,11 @@ internal class MessagesViewModelTest {
     private companion object {
         val Event_1 = Event(
             "Message 1",
-            Instant.fromEpochSeconds(1000).toLocalDateTime(TimeZone.currentSystemDefault())
+            DateTime.Companion.fromUnix(1000000),
         )
         val MESSAGE_2 = Event(
             "Message 2",
-            Instant.fromEpochSeconds(1000).toLocalDateTime(TimeZone.currentSystemDefault())
+            DateTime.Companion.fromUnix(2000000),
         )
     }
 }

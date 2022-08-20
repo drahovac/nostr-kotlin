@@ -23,7 +23,7 @@ object Versions {
     const val coroutines = "1.6.4"
     const val retrofit = "2.9.0"
     const val joda = "2.10.14"
-    const val date = "0.4.0"
+    const val date = "3.0.0"
     const val hash = "2.2.0"
     const val seri = "1.4.0-RC"
     const val secp = "0.6.4"

@@ -48,7 +48,7 @@ private fun MessagesContent(messages: List<Event>) {
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
                     Text(
-                        text = message.created.toString(),
+                        text = message.created.toStringDefault(),
                         style = MaterialTheme.typography.body1,
                     )
                 }

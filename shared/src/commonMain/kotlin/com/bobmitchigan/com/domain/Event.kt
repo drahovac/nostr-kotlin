@@ -1,8 +1,10 @@
 package com.bobmitchigan.com.domain
 
-import kotlinx.datetime.LocalDateTime
+import com.soywiz.klock.DateTime
 
 data class Event(
     val content: String,
-    val created: LocalDateTime,
-)
+    val created: DateTime,
+){
+    fun test() {}
+}

@@ -43,7 +43,7 @@ object Dependencies {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
     // date
-    const val date = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.date}"
+    const val date = "com.soywiz.korlibs.klock:klock:${Versions.date}"
 
     // crypto
     const val hash = "com.soywiz.korlibs.krypto:krypto:${Versions.hash}"
