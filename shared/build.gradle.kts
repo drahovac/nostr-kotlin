@@ -39,6 +39,7 @@ kotlin {
                 api(Dependencies.date)
                 implementation(Dependencies.secpKmp)
                 implementation(Dependencies.dbMain)
+                implementation(Dependencies.dbCor)
             }
         }
         val commonTest by getting {

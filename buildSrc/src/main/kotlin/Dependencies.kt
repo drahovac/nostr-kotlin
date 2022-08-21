@@ -58,6 +58,7 @@ object Dependencies {
     const val dbMain = "com.squareup.sqldelight:runtime-metadata:1.1.3"
     const val dbAnd = "com.squareup.sqldelight:android-driver:${Versions.database}"
     const val dbIos = "com.squareup.sqldelight:native-driver:${Versions.database}"
+    const val dbCor = "com.squareup.sqldelight:coroutines-extensions:${Versions.database}"
 
     // test libs
     const val junit = "junit:junit:${Versions.junit}"

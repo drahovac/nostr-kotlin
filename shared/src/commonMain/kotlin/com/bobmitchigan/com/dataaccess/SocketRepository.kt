@@ -1,9 +1,8 @@
 package com.bobmitchigan.com.dataaccess
 
-import com.bobmitchigan.EventDatabase
+import com.bobmitchigan.EventEntity
 import com.bobmitchigan.com.domain.Event
 import com.bobmitchigan.com.domain.Repository
-import com.soywiz.klock.DateTime
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -16,16 +15,18 @@ class SocketRepository(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMessages(): Flow<Event> {
+    override suspend fun getMessages(): Flow<List<Event>> {
         val messageFlow = socketClient.getMessages()
         messageFlow.collect {
             eventDao.insert(it)
         }
-        return messageFlow.map {  Event(
-            it.content.orEmpty(),
-            DateTime.fromUnix(it.created * MILLIS_IN_SECONDS)
-        ) }
+        return eventDao.selectAll().map { it.map { it.toDomain() } }
     }
 }
 
-private const val MILLIS_IN_SECONDS = 1000L
+private fun EventEntity.toDomain(): Event {
+    return Event(
+        content = content.orEmpty(),
+        created = created_at.toDateTime()
+    )
+}

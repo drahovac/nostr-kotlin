@@ -27,7 +27,7 @@ class EventParserTest {
 
     @Test
     fun `return event for valid response`() {
-        val result = EventParser.parseResponse(VALID_EVENT)
+        val result = EventParser.parseResponse(VALID_EVENT)?.toDomain()
 
         assertNotNull(result)
         assertEquals(

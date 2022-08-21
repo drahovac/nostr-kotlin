@@ -13,3 +13,7 @@ CREATE TABLE eventEntity (
 insertEvent:
 INSERT INTO eventEntity(id,pubkey,created_at,kind,content,sig,tags)
 VALUES ?;
+
+selectAll:
+SELECT *
+FROM eventEntity;

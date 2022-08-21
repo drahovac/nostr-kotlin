@@ -2,6 +2,12 @@ package com.bobmitchigan.com.dataaccess
 
 import com.bobmitchigan.EventDatabase
 import com.bobmitchigan.EventEntity
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
+import com.squareup.sqldelight.runtime.coroutines.mapToOneNotNull
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flatMapLatest
 
 class EventDao(database: EventDatabase) {
 
@@ -20,4 +26,7 @@ class EventDao(database: EventDatabase) {
             )
         )
     }
+
+    fun selectAll() = db.selectAll().asFlow().mapToList()
 }
+
