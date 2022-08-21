@@ -10,7 +10,7 @@ import kotlinx.serialization.decodeFromString
 
 object EventParser {
 
-    fun parseResponse(raw: String): Event? {
+    fun parseResponse(raw: String): EventArrayMember.EventDto? {
         val dto = try {
             val eventList: List<EventArrayMember> = nonStrictSerializer.decodeFromString(raw)
             eventList.filterIsInstance<EventArrayMember.EventDto>().first()
@@ -21,11 +21,6 @@ object EventParser {
         check(hasValidId(dto)) { "Event has invalid id." }
         check(hasValidSignature(dto)) { "Event has invalid signature." }
 
-        return Event(
-            dto.content.orEmpty(),
-            DateTime.fromUnix(dto.created * MILLIS_IN_SECONDS)
-        )
+        return dto
     }
 }
-
-private const val MILLIS_IN_SECONDS = 1000L

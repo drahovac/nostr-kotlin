@@ -1,5 +1,0 @@
-
-CREATE TABLE event (
-  id TEXT NOT NULL,
-  full_name TEXT NOT NULL
-);

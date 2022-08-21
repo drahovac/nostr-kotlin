@@ -15,7 +15,7 @@ import kotlinx.serialization.json.Json
 
 class SocketClient(private val client: HttpClient) {
 
-    fun getMessages(): Flow<Event> {
+    fun getMessages(): Flow<EventArrayMember.EventDto> {
         return flow {
             runCatching {
                 client.wss(
@@ -31,7 +31,7 @@ class SocketClient(private val client: HttpClient) {
     }
 
     private suspend fun ClientWebSocketSession.emitMessages(
-        flowCollector: FlowCollector<Event>,
+        flowCollector: FlowCollector<EventArrayMember.EventDto>,
         defaultClientWebSocketSession: DefaultClientWebSocketSession
     ) {
         runCatching {

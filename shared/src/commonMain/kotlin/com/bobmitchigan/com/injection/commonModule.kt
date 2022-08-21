@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.injection
 
+import com.bobmitchigan.com.dataaccess.EventDao
 import com.bobmitchigan.com.dataaccess.SocketClient
 import com.bobmitchigan.com.dataaccess.SocketRepository
 import com.bobmitchigan.com.dataaccess.createDatabase
@@ -21,6 +22,8 @@ val commonModule = module {
     single { createDatabase(get()) }
 
     factory { SocketClient(get()) }
+
+    factory { EventDao(get()) }
 
     factory<Repository> { SocketRepository(get(), get()) }
 }
