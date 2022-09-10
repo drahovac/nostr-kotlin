@@ -17,7 +17,7 @@ import org.junit.Test
 internal class MessagesViewModelTest {
 
     private val repository: SocketRepository = mockk()
-    private val messagesFlow = MutableStateFlow<Event>(Event_1)
+    private val messagesFlow = MutableStateFlow(listOf(EVENT_1))
     private lateinit var messagesViewModel: MessagesViewModel
 
     @Before
@@ -30,25 +30,25 @@ internal class MessagesViewModelTest {
 
     @Test
     fun `return first messages on init`() {
-        assertEquals(listOf(Event_1), messagesViewModel.messages.value)
+        assertEquals(listOf(EVENT_1), messagesViewModel.messages.value)
     }
 
     @Test
     fun `return messages from repo`() {
-        messagesFlow.value = MESSAGE_2
+        messagesFlow.value = listOf(EVENT_1, EVENT_2)
 
         assertEquals(
-            listOf(Event_1, MESSAGE_2),
+            listOf(EVENT_1, EVENT_2),
             messagesViewModel.messages.value
         )
     }
 
     private companion object {
-        val Event_1 = Event(
+        val EVENT_1 = Event(
             "Message 1",
             DateTime.Companion.fromUnix(1000000),
         )
-        val MESSAGE_2 = Event(
+        val EVENT_2 = Event(
             "Message 2",
             DateTime.Companion.fromUnix(2000000),
         )

@@ -54,13 +54,19 @@ object Dependencies {
     // serial
     const val serial = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.seri}"
 
+    // db
+    const val dbMain = "com.squareup.sqldelight:runtime-metadata:1.1.3"
+    const val dbAnd = "com.squareup.sqldelight:android-driver:${Versions.database}"
+    const val dbIos = "com.squareup.sqldelight:native-driver:${Versions.database}"
+    const val dbCor = "com.squareup.sqldelight:coroutines-extensions:${Versions.database}"
+
     // test libs
     const val junit = "junit:junit:${Versions.junit}"
     private const val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     private const val composeUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
     private const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    private const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
     const val coroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     private const val jodaTest = "joda-time:joda-time:${Versions.joda}"

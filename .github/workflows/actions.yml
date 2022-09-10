@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Execute Gradle build
-        run: ./gradlew detektDebug detektAndroidDebug detektMetadataMain
+        run: ./gradlew detekt
 
   test:
     runs-on: ubuntu-latest

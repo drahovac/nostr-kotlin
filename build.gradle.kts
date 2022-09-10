@@ -1,3 +1,8 @@
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_SRC_DIR_JAVA
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_SRC_DIR_KOTLIN
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_TEST_SRC_DIR_JAVA
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_TEST_SRC_DIR_KOTLIN
+
 plugins {
     id(Dependencies.benManesPluginId) version Versions.benManes
     id("io.gitlab.arturbosch.detekt") version "1.21.0"
@@ -15,6 +20,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0")
         classpath("com.android.tools.build:gradle:7.2.2")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}")
+        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.database}")
     }
 }
 
@@ -29,10 +35,12 @@ allprojects {
 
     detekt {
         source = objects.fileCollection().from(
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_JAVA,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_TEST_SRC_DIR_JAVA,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_TEST_SRC_DIR_KOTLIN,
+            DEFAULT_SRC_DIR_JAVA,
+            DEFAULT_TEST_SRC_DIR_JAVA,
+            DEFAULT_SRC_DIR_KOTLIN,
+            DEFAULT_TEST_SRC_DIR_KOTLIN,
+            "shared/src/commonMain/kotlin",
+            "shared/src/commonTest/kotlin"
         )
         buildUponDefaultConfig = true
         baseline = file("$rootDir/config/detekt/baseline.xml")

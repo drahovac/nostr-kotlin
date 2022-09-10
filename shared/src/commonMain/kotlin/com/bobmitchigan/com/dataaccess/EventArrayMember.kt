@@ -1,5 +1,7 @@
 package com.bobmitchigan.com.dataaccess
 
+import com.bobmitchigan.com.domain.Event
+import com.soywiz.klock.DateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,3 +23,14 @@ sealed interface EventArrayMember {
         val tags: List<List<String>>,
     ) : EventArrayMember
 }
+
+fun EventArrayMember.EventDto.toDomain(): Event {
+    return Event(
+        content.orEmpty(),
+        created.toDateTime()
+    )
+}
+
+fun Long.toDateTime() = DateTime.fromUnix(this * MILLIS_IN_SECONDS)
+
+private const val MILLIS_IN_SECONDS = 1000L

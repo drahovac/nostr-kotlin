@@ -70,7 +70,8 @@ class EventValidatorTest {
             kind = 1,
             tags = listOf(listOf("client", "more-speech - 202208171549")),
             content = "test",
-            sig = "e4d8edef7fdc8b63f256f7fe006961768b1a23c01f34b825eea0897cc94cc204a728a615a880ae7f823577c6a97266f77f160f9174dc50d405d2e22c365d1700"
+            sig = "e4d8edef7fdc8b63f256f7fe006961768b1a23c01f34b825eea0897cc9" +
+                    "4cc204a728a615a880ae7f823577c6a97266f77f160f9174dc50d405d2e22c365d1700"
         )
     }
 }

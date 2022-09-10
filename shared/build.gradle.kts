@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization") version Versions.kotlin
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -37,16 +38,20 @@ kotlin {
                 implementation(Dependencies.serial)
                 api(Dependencies.date)
                 implementation(Dependencies.secpKmp)
+                implementation(Dependencies.dbMain)
+                implementation(Dependencies.dbCor)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.mockk)
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(Dependencies.dbAnd)
                 implementation(Dependencies.secpAnd)
             }
         }
@@ -65,6 +70,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation(Dependencies.dbIos)
             }
         }
         val iosX64Test by getting
@@ -76,6 +82,12 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+    }
+}
+
+sqldelight {
+    database("EventDatabase") {
+        packageName = "com.bobmitchigan"
     }
 }
 
