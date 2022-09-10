@@ -16,4 +16,5 @@ VALUES ?;
 
 selectAll:
 SELECT *
-FROM eventEntity;
+FROM eventEntity
+ORDER BY created_at DESC;

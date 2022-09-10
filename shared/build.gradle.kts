@@ -45,6 +45,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.mockk)
             }
         }
         val androidMain by getting {

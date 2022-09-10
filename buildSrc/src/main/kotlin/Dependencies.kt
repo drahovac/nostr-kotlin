@@ -66,7 +66,7 @@ object Dependencies {
     private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     private const val composeUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
     private const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    private const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
     const val coroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     private const val jodaTest = "joda-time:joda-time:${Versions.joda}"

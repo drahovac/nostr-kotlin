@@ -1,9 +1,11 @@
 package com.bobmitchigan.com.dataaccess
 
+import co.touchlab.kermit.Logger
 import com.bobmitchigan.EventEntity
 import com.bobmitchigan.com.domain.Event
 import com.bobmitchigan.com.domain.Repository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class SocketRepository(
@@ -16,13 +18,30 @@ class SocketRepository(
     }
 
     override suspend fun getMessages(): Flow<List<Event>> {
-        val messageFlow = socketClient.getMessages()
+        return eventDao.selectAll().map { eventEntities ->
+            eventEntities.map { it.toDomain() }
+        }.also {
+            requestNewMessages(it.first())
+        }
+    }
+
+    private suspend fun requestNewMessages(events: List<Event>) {
+        val messageFlow = socketClient.getMessages(
+            POC_EVENT_FILTER.copy(since = events.firstOrNull()?.created)
+        )
         messageFlow.collect {
+            Logger.d("Inserting message: ${it.id}")
             eventDao.insert(it)
         }
-        return eventDao.selectAll().map { it.map { it.toDomain() } }
     }
 }
+
+val POC_EVENT_FILTER = EventFilter(
+    authors = listOf("2ef93f01cd2493e04235a6b87b10d3c4a74e2a7eb7c3caf168268f6af73314b5"),
+    kinds = listOf(1),
+    limit = 20,
+    since = null
+)
 
 private fun EventEntity.toDomain(): Event {
     return Event(
