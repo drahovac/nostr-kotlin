@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.bobmitchigan.com.android.ui.theme.KtMultiNostrTheme
 import com.bobmitchigan.com.android.view.MessagesScreen
+import com.bobmitchigan.com.android.view.ProfileScreen
 import org.koin.core.component.KoinComponent
 
 class MainActivity : ComponentActivity(), KoinComponent {
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MessagesScreen()
+                    ProfileScreen()
                 }
             }
         }
