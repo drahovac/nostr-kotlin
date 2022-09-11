@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.android.R
 import com.bobmitchigan.com.android.ui.components.LabelValue
 import com.bobmitchigan.com.android.ui.components.TextHeadline3
@@ -30,6 +31,8 @@ fun ProfileScreen(viewModel: ProfileViewModel = getViewModel()) {
 
 @Composable
 private fun ProfileContent(profiles: List<Profile>) {
+    Logger.d("vaclav " + profiles)
+
     LazyColumn {
         item {
             TextHeadline3(

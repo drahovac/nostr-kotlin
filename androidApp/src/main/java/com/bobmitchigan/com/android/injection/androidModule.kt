@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.android.injection
 
+import com.bobmitchigan.com.android.viewmodel.MainViewModel
 import com.bobmitchigan.com.android.viewmodel.MessagesViewModel
 import com.bobmitchigan.com.android.viewmodel.ProfileViewModel
 import com.bobmitchigan.com.dataaccess.DriverFactory
@@ -12,5 +13,7 @@ val androidModule = module {
 
     viewModel { MessagesViewModel(get()) }
 
-    viewModel { ProfileViewModel() }
+    viewModel { ProfileViewModel(get()) }
+
+    viewModel { MainViewModel(get()) }
 }

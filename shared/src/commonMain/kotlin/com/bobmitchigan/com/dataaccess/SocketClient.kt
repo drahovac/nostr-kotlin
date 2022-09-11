@@ -5,12 +5,35 @@ import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.isActive
 
 class SocketClient(private val client: HttpClient) {
+
+    private val filter = MutableStateFlow<EventFilter?>(null)
+    private var event = MutableStateFlow<EventArrayMember.EventDto?>(null)
+
+    fun setFilter(filter: EventFilter): Flow<EventArrayMember.EventDto?> {
+        event.value = null
+        this.filter.update { filter }
+        return event
+    }
+
+    suspend fun openSocket() {
+        Logger.d("Opening socket")
+        runCatching {
+            client.wss(
+                method = HttpMethod.Get,
+                host = Hosts.DAMUS,
+            ) {
+                filter.collectLatest {
+                    it?.let {
+                        emitMessages(it, event, this)
+                    }
+                }
+            }
+        }
+    }
 
     fun getMessages(eventFilter: EventFilter): Flow<EventArrayMember.EventDto> {
         Logger.d("Requesting messages.")
@@ -38,8 +61,8 @@ class SocketClient(private val client: HttpClient) {
             outgoing.send(Frame.Text("[\"REQ\", \"kotlin-multiplatform\", $filterText]"))
             while (this.isActive) {
                 (incoming.receive() as? Frame.Text)?.let {
-                    Logger.d(it.readText())
                     EventParser.parseResponse(it.readText())?.let {
+                        Logger.d("vaclav emit $flowCollector")
                         flowCollector.emit(it)
                     }
                 }

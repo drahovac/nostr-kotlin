@@ -3,9 +3,7 @@ package com.bobmitchigan.com.dataaccess
 import co.touchlab.kermit.CommonWriter
 import co.touchlab.kermit.Logger
 import com.bobmitchigan.EventEntityTestBuilder
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -52,6 +50,15 @@ internal class SocketRepositoryTest {
         socketRepository.getMessages()
 
         verify { eventDao.insert(NEW_EVENT) }
+    }
+
+    @Test
+    fun `open socket`() = runTest {
+        coEvery { socketClient.openSocket() } returns Unit
+
+        socketRepository.openSocket()
+
+        coVerify { socketClient.openSocket() }
     }
 
     private companion object {

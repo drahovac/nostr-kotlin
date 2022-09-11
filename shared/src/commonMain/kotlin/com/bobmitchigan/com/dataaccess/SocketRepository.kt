@@ -1,9 +1,13 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.bobmitchigan.com.dataaccess
 
 import co.touchlab.kermit.Logger
 import com.bobmitchigan.EventEntity
 import com.bobmitchigan.com.domain.Event
+import com.bobmitchigan.com.domain.Profile
 import com.bobmitchigan.com.domain.Repository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -25,6 +29,14 @@ class SocketRepository(
         }
     }
 
+    override fun getProfiles(): Flow<List<Profile>> {
+        return socketClient.setFilter(POC_EVENT_FILTER.copy(kinds = listOf(0))).map {
+            it?.toProfile()?.let { listOf(it) } ?: emptyList()
+        }
+    }
+
+    override suspend fun openSocket() = socketClient.openSocket()
+
     private suspend fun requestNewMessages(events: List<Event>) {
         val messageFlow = socketClient.getMessages(
             POC_EVENT_FILTER.copy(since = events.firstOrNull()?.created)
@@ -34,6 +46,14 @@ class SocketRepository(
             eventDao.insert(it)
         }
     }
+}
+
+private fun EventArrayMember.EventDto.toProfile(): Profile {
+    return Profile(
+        "",
+        "",
+        ""
+    )
 }
 
 val POC_EVENT_FILTER = EventFilter(
