@@ -5,10 +5,8 @@ import co.touchlab.kermit.Logger
 import com.bobmitchigan.EventEntityTestBuilder
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -20,6 +18,7 @@ internal class SocketRepositoryTest {
     private val eventDao: EventDao = mockk(relaxUnitFun = true)
     private val messagesFlow: Flow<EventArrayMember.EventDto> = flowOf()
     private val socketRepository = SocketRepository(socketClient, eventDao)
+    private val dispatcher = UnconfinedTestDispatcher()
 
     @Before
     fun setUp() {
@@ -28,29 +27,29 @@ internal class SocketRepositoryTest {
     }
 
     @Test
-    fun `should request messages without start date if db empty`() = runTest {
+    fun `should request messages without start date if db empty`() = runTest(dispatcher) {
         every { eventDao.selectAll() } returns flowOf(emptyList())
 
-        socketRepository.getMessages()
+        socketRepository.getMessages().count()
 
         verify { socketClient.getMessages(POC_EVENT_FILTER) }
     }
 
     @Test
-    fun `should request messages from newest message in db empty`() = runTest {
+    fun `should request messages from newest message in db empty`() = runTest(dispatcher) {
         every { eventDao.selectAll() } returns flowOf(ENTITIES)
 
-        socketRepository.getMessages()
+        socketRepository.getMessages().count()
 
         verify { socketClient.getMessages(POC_EVENT_FILTER.copy(since = NEWEST_DATE.toDateTime())) }
     }
 
     @Test
-    fun `insert new messages to db`() = runTest {
+    fun `insert new messages to db`() = runTest(dispatcher) {
         every { socketClient.getMessages(any()) } returns flowOf(NEW_EVENT)
         every { eventDao.selectAll() } returns flowOf(emptyList())
 
-        socketRepository.getMessages()
+        socketRepository.getMessages().count()
 
         verify { eventDao.insert(NEW_EVENT) }
     }
