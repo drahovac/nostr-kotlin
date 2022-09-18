@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.domain
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {

@@ -7,10 +7,12 @@ import com.bobmitchigan.EventEntity
 import com.bobmitchigan.com.domain.Event
 import com.bobmitchigan.com.domain.Profile
 import com.bobmitchigan.com.domain.Repository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -25,9 +27,10 @@ class SocketRepository(
 
     override suspend fun getMessages(): Flow<List<Event>> {
         return eventDao.selectAll().map { eventEntities ->
-            eventEntities.map { it.toDomain() }
-        }.also {
-            requestNewMessages(it.first())
+            val entities = eventEntities.map { it.toDomain() }
+            currentCoroutineContext()
+            CoroutineScope(currentCoroutineContext()).launch { requestNewMessages(entities) }
+            entities
         }
     }
 

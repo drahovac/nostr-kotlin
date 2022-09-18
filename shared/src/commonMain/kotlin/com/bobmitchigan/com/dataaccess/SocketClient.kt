@@ -60,8 +60,8 @@ class SocketClient(private val client: HttpClient) {
             val filterText = filter.getFilterString()
             outgoing.send(Frame.Text("[\"REQ\", \"kotlin-multiplatform\", $filterText]"))
             while (this.isActive) {
-                (incoming.receive() as? Frame.Text)?.let {
-                    EventParser.parseResponse(it.readText())?.let {
+                (incoming.receive() as? Frame.Text)?.let { dto ->
+                    EventParser.parseResponse(dto.readText())?.let {
                         Logger.d("Emmiting $it")
                         flowCollector.emit(it)
                     }
@@ -69,7 +69,7 @@ class SocketClient(private val client: HttpClient) {
             }
         }.onFailure {
             defaultClientWebSocketSession.close()
-            Logger.d("Socket closed")
+            Logger.d("Socket closed, reason: ${it}")
         }
     }
 }
