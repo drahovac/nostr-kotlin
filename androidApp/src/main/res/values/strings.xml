@@ -5,5 +5,6 @@
     <string name="author">Author</string>
     <string name="about">About</string>
     <string name="profiles">Profiles</string>
+    <string name="profile_avatar">Profile avatar</string>
 
 </resources>
