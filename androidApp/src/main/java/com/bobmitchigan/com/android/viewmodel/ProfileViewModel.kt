@@ -2,7 +2,6 @@ package com.bobmitchigan.com.android.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.touchlab.kermit.Logger
 import com.bobmitchigan.com.domain.Profile
 import com.bobmitchigan.com.domain.Repository
 import kotlinx.coroutines.flow.MutableStateFlow

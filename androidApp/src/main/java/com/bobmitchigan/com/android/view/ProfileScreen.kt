@@ -63,7 +63,8 @@ internal fun ProfileScreenPreview() {
                 Profile(
                     "John Doe",
                     "",
-                    "About text"
+                    "About text",
+                    ""
                 )
             )
         )

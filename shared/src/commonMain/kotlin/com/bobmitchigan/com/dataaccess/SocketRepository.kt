@@ -11,6 +11,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 class SocketRepository(
     private val socketClient: SocketClient,
@@ -30,8 +32,8 @@ class SocketRepository(
     }
 
     override fun getProfiles(): Flow<List<Profile>> {
-        return socketClient.setFilter(POC_EVENT_FILTER.copy(kinds = listOf(0))).map {
-            it?.toProfile()?.let { listOf(it) } ?: emptyList()
+        return socketClient.setFilter(POC_EVENT_FILTER.copy(kinds = listOf(0))).map { eventDto ->
+            eventDto?.toProfile(eventDto.pubkey)?.let { listOf(it) } ?: emptyList()
         }
     }
 
@@ -48,13 +50,9 @@ class SocketRepository(
     }
 }
 
-private fun EventArrayMember.EventDto.toProfile(): Profile {
-    return Profile(
-        "",
-        "",
-        ""
-    )
-}
+private fun EventArrayMember.EventDto.toProfile(key: String): Profile? = runCatching {
+    content?.let { Json.decodeFromString<ProfileDto>(it).toDomain(key) }
+}.getOrNull()
 
 val POC_EVENT_FILTER = EventFilter(
     authors = listOf("2ef93f01cd2493e04235a6b87b10d3c4a74e2a7eb7c3caf168268f6af73314b5"),

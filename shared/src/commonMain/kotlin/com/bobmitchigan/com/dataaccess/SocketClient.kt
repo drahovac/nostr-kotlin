@@ -62,7 +62,7 @@ class SocketClient(private val client: HttpClient) {
             while (this.isActive) {
                 (incoming.receive() as? Frame.Text)?.let {
                     EventParser.parseResponse(it.readText())?.let {
-                        Logger.d("vaclav emit $flowCollector")
+                        Logger.d("Emmiting $it")
                         flowCollector.emit(it)
                     }
                 }
