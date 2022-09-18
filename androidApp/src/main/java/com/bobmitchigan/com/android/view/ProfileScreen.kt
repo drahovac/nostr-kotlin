@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.android.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -16,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.touchlab.kermit.Logger
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.bobmitchigan.com.android.R
@@ -28,17 +29,20 @@ import com.bobmitchigan.com.domain.Profile
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun ProfileScreen(viewModel: ProfileViewModel = getViewModel()) {
+fun ProfileScreen(
+    navController: NavController,
+    viewModel: ProfileViewModel = getViewModel()
+) {
 
     val profiles by viewModel.profiles.collectAsState()
 
-    ProfileContent(profiles)
+    ProfileContent(profiles) {
+        navController.navigate(Destinations.MESSAGES.route)
+    }
 }
 
 @Composable
-private fun ProfileContent(profiles: List<Profile>) {
-    Logger.d("vaclav " + profiles)
-
+private fun ProfileContent(profiles: List<Profile>, onClick: (Profile) -> Unit) {
     LazyColumn {
         item {
             TextHeadline3(
@@ -46,13 +50,16 @@ private fun ProfileContent(profiles: List<Profile>) {
                 modifier = Modifier.padding(16.dp)
             )
         }
-        items(profiles) { profile -> ProfileCell(profile) }
+        items(profiles) { profile -> ProfileCell(profile, onClick) }
     }
 }
 
 @Composable
-private fun ProfileCell(profile: Profile) {
-    Card(Modifier.padding(16.dp)) {
+private fun ProfileCell(profile: Profile, onClick: (Profile) -> Unit) {
+    Card(
+        Modifier
+            .padding(16.dp)
+            .clickable { onClick(profile) }) {
         Row {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -88,7 +95,8 @@ internal fun ProfileScreenPreview() {
                     "About text",
                     ""
                 )
-            )
+            ),
+            onClick = {}
         )
     }
 }

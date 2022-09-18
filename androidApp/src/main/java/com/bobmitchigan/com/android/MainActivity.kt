@@ -7,7 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bobmitchigan.com.android.ui.theme.KtMultiNostrTheme
+import com.bobmitchigan.com.android.view.Destinations
+import com.bobmitchigan.com.android.view.Destinations.Companion.initialRoute
+import com.bobmitchigan.com.android.view.MessagesScreen
 import com.bobmitchigan.com.android.view.ProfileScreen
 import com.bobmitchigan.com.android.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,13 +28,18 @@ class MainActivity : ComponentActivity(), KoinComponent {
 
         detailViewModel.init()
         setContent {
+
             KtMultiNostrTheme {
-                // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ProfileScreen()
+                    NavHost(navController = navController, startDestination = initialRoute()) {
+                        composable(Destinations.PROFILES.route) { ProfileScreen(navController) }
+                        composable(Destinations.MESSAGES.route) { MessagesScreen() }
+                    }
                 }
             }
         }
