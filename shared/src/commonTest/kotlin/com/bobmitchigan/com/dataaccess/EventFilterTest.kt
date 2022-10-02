@@ -31,7 +31,7 @@ class EventFilterTest {
         ).getFilterString()
 
         assertEquals(
-            "{\"authors\":[\"author1\",\"author2\"],\"kinds\":[0,2],\"limit\":20,\"since\":5000}",
+            "{\"authors\":[\"author1\",\"author2\"],\"kinds\":[0,2],\"limit\":20,\"since\":5}",
             filterText
         )
     }

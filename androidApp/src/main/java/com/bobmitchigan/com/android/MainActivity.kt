@@ -7,22 +7,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bobmitchigan.com.android.ui.theme.KtMultiNostrTheme
+import com.bobmitchigan.com.android.view.Destinations
+import com.bobmitchigan.com.android.view.Destinations.Companion.initialRoute
 import com.bobmitchigan.com.android.view.MessagesScreen
+import com.bobmitchigan.com.android.view.ProfileScreen
+import com.bobmitchigan.com.android.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 
 class MainActivity : ComponentActivity(), KoinComponent {
 
+    private val detailViewModel: MainViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        detailViewModel.init()
         setContent {
+
             KtMultiNostrTheme {
-                // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MessagesScreen()
+                    NavHost(navController = navController, startDestination = initialRoute()) {
+                        composable(Destinations.PROFILES.route) { ProfileScreen(navController) }
+                        composable(Destinations.MESSAGES.route) { MessagesScreen() }
+                    }
                 }
             }
         }

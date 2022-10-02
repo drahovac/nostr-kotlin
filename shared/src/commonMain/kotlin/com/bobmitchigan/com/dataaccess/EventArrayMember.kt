@@ -33,4 +33,6 @@ fun EventArrayMember.EventDto.toDomain(): Event {
 
 fun Long.toDateTime() = DateTime.fromUnix(this * MILLIS_IN_SECONDS)
 
+fun DateTime.toServerMillis() = unixMillisLong / MILLIS_IN_SECONDS
+
 private const val MILLIS_IN_SECONDS = 1000L

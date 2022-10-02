@@ -14,7 +14,10 @@ val commonModule = module {
 
     single {
         HttpClient {
-            install(Logging)
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
+            }
             install(WebSockets)
         }
     }
@@ -25,5 +28,5 @@ val commonModule = module {
 
     factory { EventDao(get()) }
 
-    factory<Repository> { SocketRepository(get(), get()) }
+    single<Repository> { SocketRepository(get(), get()) }
 }

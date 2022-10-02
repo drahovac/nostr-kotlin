@@ -14,6 +14,10 @@ insertEvent:
 INSERT INTO eventEntity(id,pubkey,created_at,kind,content,sig,tags)
 VALUES ?;
 
+updateOrInsert:
+INSERT OR REPLACE INTO eventEntity(id,pubkey,created_at,kind,content,sig,tags)
+VALUES ?;
+
 selectAll:
 SELECT *
 FROM eventEntity
