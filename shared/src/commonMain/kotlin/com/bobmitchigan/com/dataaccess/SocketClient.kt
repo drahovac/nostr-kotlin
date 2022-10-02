@@ -41,7 +41,7 @@ class SocketClient(private val client: HttpClient) {
             runCatching {
                 client.wss(
                     method = HttpMethod.Get,
-                    host = Hosts.DAMUS,
+                    host = Hosts.WELL_ORDER,
                 ) {
                     emitMessages(eventFilter, this@flow, this)
                 }
@@ -58,9 +58,12 @@ class SocketClient(private val client: HttpClient) {
     ) {
         runCatching {
             val filterText = filter.getFilterString()
+            Logger.d("Sending filter $filterText")
             outgoing.send(Frame.Text("[\"REQ\", \"kotlin-multiplatform\", $filterText]"))
             while (this.isActive) {
-                (incoming.receive() as? Frame.Text)?.let { dto ->
+                val incomingMessage = incoming.receive()
+                (incomingMessage as? Frame.Text)?.let { dto ->
+                    Logger.d("Incoming ${dto.readText()}")
                     EventParser.parseResponse(dto.readText())?.let {
                         Logger.d("Emmiting $it")
                         flowCollector.emit(it)

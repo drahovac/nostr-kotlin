@@ -51,7 +51,7 @@ internal class SocketRepositoryTest {
 
         socketRepository.getMessages().count()
 
-        verify { eventDao.insert(NEW_EVENT) }
+        verify { eventDao.updateOrInsert(NEW_EVENT) }
     }
 
     @Test

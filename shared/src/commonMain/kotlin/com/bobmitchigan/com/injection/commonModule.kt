@@ -14,7 +14,10 @@ val commonModule = module {
 
     single {
         HttpClient {
-            install(Logging)
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
+            }
             install(WebSockets)
         }
     }

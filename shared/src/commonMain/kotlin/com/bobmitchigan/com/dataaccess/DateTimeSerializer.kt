@@ -18,6 +18,6 @@ object DateTimeSerializer : KSerializer<DateTime> {
     }
 
     override fun serialize(encoder: Encoder, value: DateTime) {
-        encoder.encodeLong(value.unixMillisLong)
+        encoder.encodeLong(value.toServerMillis())
     }
 }

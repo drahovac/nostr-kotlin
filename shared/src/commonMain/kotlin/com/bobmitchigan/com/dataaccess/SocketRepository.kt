@@ -48,7 +48,7 @@ class SocketRepository(
         )
         messageFlow.collect {
             Logger.d("Inserting message: ${it.id}")
-            eventDao.insert(it)
+            eventDao.updateOrInsert(it)
         }
     }
 }
