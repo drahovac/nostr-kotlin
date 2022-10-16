@@ -6,5 +6,6 @@
     <string name="about">About</string>
     <string name="profiles">Profiles</string>
     <string name="profile_avatar">Profile avatar</string>
+    <string name="create_profile">Create profile</string>
 
 </resources>
