@@ -4,7 +4,8 @@ import com.bobmitchigan.com.dataaccess.EventDao
 import com.bobmitchigan.com.dataaccess.SocketClient
 import com.bobmitchigan.com.dataaccess.SocketRepository
 import com.bobmitchigan.com.dataaccess.createDatabase
-import com.bobmitchigan.com.domain.Repository
+import com.bobmitchigan.com.domain.MessagesRepository
+import com.bobmitchigan.com.userProfile.injection.userProfileModule
 import io.ktor.client.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
@@ -28,5 +29,5 @@ val commonModule = module {
 
     factory { EventDao(get()) }
 
-    single<Repository> { SocketRepository(get(), get()) }
+    single<MessagesRepository> { SocketRepository(get(), get()) }
 }

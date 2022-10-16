@@ -6,7 +6,7 @@ import co.touchlab.kermit.Logger
 import com.bobmitchigan.EventEntity
 import com.bobmitchigan.com.domain.Event
 import com.bobmitchigan.com.domain.Profile
-import com.bobmitchigan.com.domain.Repository
+import com.bobmitchigan.com.domain.MessagesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.currentCoroutineContext
@@ -19,7 +19,7 @@ import kotlinx.serialization.json.Json
 class SocketRepository(
     private val socketClient: SocketClient,
     private val eventDao: EventDao,
-) : Repository {
+) : MessagesRepository {
 
     override suspend fun setMessage(message: Event) {
         TODO("Not yet implemented")

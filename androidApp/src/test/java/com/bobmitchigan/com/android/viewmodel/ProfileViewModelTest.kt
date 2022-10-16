@@ -1,6 +1,6 @@
 package com.bobmitchigan.com.android.viewmodel
 
-import com.bobmitchigan.com.domain.Repository
+import com.bobmitchigan.com.domain.MessagesRepository
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ProfileViewModelTest {
 
-    private val repository: Repository = mockk()
+    private val repository: MessagesRepository = mockk()
     private lateinit var profileViewModel: ProfileViewModel
 
     @Before

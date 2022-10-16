@@ -1,0 +1,15 @@
+CREATE TABLE userProfileEntity (
+    pubkey TEXT NOT NULL PRIMARY KEY,
+    privkey TEXT NOT NULL,
+    name TEXT NOT NULL,
+    about TEXT,
+    image TEXT
+);
+
+updateOrInsert:
+INSERT OR REPLACE INTO userProfileEntity(pubkey,privkey,name,about,image)
+VALUES ?;
+
+selectAll:
+SELECT *
+FROM userProfileEntity;

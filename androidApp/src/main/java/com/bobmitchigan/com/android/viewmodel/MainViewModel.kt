@@ -2,10 +2,10 @@ package com.bobmitchigan.com.android.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bobmitchigan.com.domain.Repository
+import com.bobmitchigan.com.domain.MessagesRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class MainViewModel(private val repository: MessagesRepository) : ViewModel() {
 
     private var socketOpened: Boolean = false
 
