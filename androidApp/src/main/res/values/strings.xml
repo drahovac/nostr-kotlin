@@ -7,5 +7,11 @@
     <string name="profiles">Profiles</string>
     <string name="profile_avatar">Profile avatar</string>
     <string name="create_profile">Create profile</string>
+    <string name="username">Username</string>
+    <string name="username_place_holder">Your_Public_Username</string>
+    <string name="about_placeholder">Public information about yourself.</string>
+    <string name="picture">Picture</string>
+    <string name="picture_link">Optional link to your profile picture.</string>
+    <string name="create">Create</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.bobmitchigan.com.android.injection
 
+import com.bobmitchigan.com.android.viewmodel.CreateUserProfileViewModel
 import com.bobmitchigan.com.android.viewmodel.MainViewModel
 import com.bobmitchigan.com.android.viewmodel.MessagesViewModel
 import com.bobmitchigan.com.android.viewmodel.ProfileViewModel
@@ -16,4 +17,6 @@ val androidModule = module {
     viewModel { ProfileViewModel(get()) }
 
     viewModel { MainViewModel(get()) }
+
+    viewModel { CreateUserProfileViewModel() }
 }
