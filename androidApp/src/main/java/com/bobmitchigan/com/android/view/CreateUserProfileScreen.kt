@@ -49,7 +49,8 @@ private fun CreateUserProfile(
             value = state.username,
             onValueChanged = actions::updateUsername,
             label = stringResource(id = R.string.username),
-            placeholder = stringResource(id = R.string.username_place_holder)
+            placeholder = stringResource(id = R.string.username_place_holder),
+            error = state.usernameError?.let { stringResource(id = it) }
         )
 
         OutlineInput(
@@ -69,7 +70,8 @@ private fun CreateUserProfile(
             value = state.picture,
             onValueChanged = actions::updatePictureLink,
             label = stringResource(id = R.string.picture),
-            placeholder = stringResource(id = R.string.picture_link)
+            placeholder = stringResource(id = R.string.picture_link),
+            error = state.pictureError?.let { stringResource(id = it) }
         )
 
         Button(onClick = actions::submit) {

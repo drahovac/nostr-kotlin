@@ -56,14 +56,14 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    NavHoset(navController)
+                    NavHost(navController)
                 }
             }
         }
     }
 
     @Composable
-    private fun NavHoset(navController: NavHostController) {
+    private fun NavHost(navController: NavHostController) {
         if (initState.value != State.LOADING) {
             NavHost(navController = navController, startDestination = initialRoute()) {
                 Destinations.values().forEach { dest ->
