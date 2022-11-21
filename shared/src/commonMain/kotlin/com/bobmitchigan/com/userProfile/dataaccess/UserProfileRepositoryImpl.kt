@@ -33,27 +33,28 @@ class UserProfileRepositoryImpl(
         }
     }
 
-   private fun createPrivateKey(): ByteArray {
-        val bytes = ByteArray(32)
+    private fun createPrivateKey(): ByteArray {
+        val bytes = ByteArray(PRIVATE_KEY_SIZE)
         SecureRandom.nextBytes(bytes)
         return bytes
     }
 
-   private fun createPublicKey(privateKey: ByteArray) =
-        Secp256k1.pubKeyCompress(Secp256k1.pubkeyCreate(privateKey)).copyOfRange(1, 33)
+    private fun createPublicKey(privateKey: ByteArray) =
+        Secp256k1.pubKeyCompress(Secp256k1.pubkeyCreate(privateKey))
+            .copyOfRange(1, PRIVATE_KEY_SIZE + 1)
 
     override fun getUserProfiles(): Flow<List<UserProfile>> {
         return dao.selectAll().map { it.toDomain() }
     }
 }
 
-private fun UserProfileEntity.toDomain()  = UserProfile(
-        pubKey = pubkey,
-        privateKey = privkey,
-        name = name,
-        about = about,
-        image = image
-    )
+private fun UserProfileEntity.toDomain() = UserProfile(
+    pubKey = pubkey,
+    privateKey = privkey,
+    name = name,
+    about = about,
+    image = image
+)
 
 private fun List<UserProfileEntity>.toDomain(): List<UserProfile> {
     return map {
@@ -66,3 +67,5 @@ private fun List<UserProfileEntity>.toDomain(): List<UserProfile> {
         )
     }
 }
+
+private const val PRIVATE_KEY_SIZE = 32
