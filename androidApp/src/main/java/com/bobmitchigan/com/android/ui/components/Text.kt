@@ -27,6 +27,22 @@ fun TextBody1(
 }
 
 @Composable
+fun TextBody2(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign? = null,
+    color: Color = Color.Unspecified
+) {
+    Text(
+        text = text,
+        color = color,
+        style = MaterialTheme.typography.body2,
+        modifier = modifier,
+        textAlign = textAlign,
+    )
+}
+
+@Composable
 fun TextHeadline3(
     text: String,
     modifier: Modifier = Modifier,
@@ -48,6 +64,7 @@ internal fun TextPreview() {
     KtMultiNostrTheme {
         Column {
             TextBody1(text = "Text body 1")
+            TextBody2(text = "Text body 2")
             TextHeadline3(text = "Headline 3")
         }
     }
