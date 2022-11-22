@@ -1,11 +1,11 @@
 package com.bobmitchigan.com.userProfile.dataaccess
 
 import com.bobmitchigan.UserProfileEntity
+import com.bobmitchigan.com.dataaccess.Secp256k1Provider
 import com.bobmitchigan.com.userProfile.domain.UserProfile
 import com.bobmitchigan.com.userProfile.domain.UserProfileRepository
 import com.soywiz.krypto.SecureRandom
 import com.soywiz.krypto.encoding.Hex
-import fr.acinq.secp256k1.Secp256k1
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -40,7 +40,7 @@ class UserProfileRepositoryImpl(
     }
 
     private fun createPublicKey(privateKey: ByteArray) =
-        Secp256k1.pubKeyCompress(Secp256k1.pubkeyCreate(privateKey))
+        Secp256k1Provider.pubKeyCompress(Secp256k1Provider.pubkeyCreate(privateKey))
             .copyOfRange(1, PRIVATE_KEY_SIZE + 1)
 
     override fun getUserProfiles(): Flow<List<UserProfile>> {
